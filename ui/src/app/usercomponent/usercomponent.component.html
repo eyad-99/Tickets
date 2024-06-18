@@ -1,0 +1,62 @@
+<!-- src/app/components/events/events.component.html -->
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+
+<h2>User Tickets</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Event id</th>
+      <th>event date</th>
+
+
+      <th>Event name</th>
+      <th>Reserve Date</th>
+      <th>User ID</th>
+      <th>Action</th> <!-- Add a new column for the action button -->
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of userTickets">
+      <td>{{ ticket.id }}</td>
+      <td>{{ ticket.event.id }}</td>
+      <td>{{ ticket.event.date }}</td>
+
+
+      <td>{{ ticket.event.name }}</td>
+      <td>{{ ticket.reserveDate  }}</td>
+      <td>{{ ticket.userId }}</td>
+      <td>
+        <button (click)="deleteTicket(ticket.id)" [disabled]="isEventDatePassed(ticket.event.date)">Delete Ticket</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Events Not Assigned to User</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of notAssignedEvents">
+      <td>{{ event.id }}</td>
+      <td>{{ event.name }}</td>
+      <td>{{ event.description }}</td>
+      <td>{{ event.date  }}</td>
+      <td>
+        <button (click)="createTicket(event.id)" [disabled]="isEventDatePassed(event.date)">create Ticket</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

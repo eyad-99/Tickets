@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="text-center mb-4">Edit Event</h1>
+    <form #eventForm="ngForm" (ngSubmit)="onSubmit(eventForm)">
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" name="name" class="form-control" [(ngModel)]="event.name" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" id="description" name="description" class="form-control" [(ngModel)]="event.description">
+      </div>
+      <div>
+        <label for="date">Date:</label>
+        <input type="date" id="date" [ngModel]="eventDate" (ngModelChange)="onDateChange($event)" name="date" required>
+      </div>
+      <div>
+        <label for="time">Time:</label>
+        <input type="time" id="time" [ngModel]="eventTime" (ngModelChange)="onTimeChange($event)" name="time" required>
+      </div>
+      <div class="mb-3">
+        <label for="numberOfTickets" class="form-label">Number of Tickets</label>
+        <input type="number" id="numberOfTickets" name="numberOfTickets" class="form-control" [(ngModel)]="event.numberOfTickets" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" id="price" name="price" class="form-control" [(ngModel)]="event.price" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+  
